@@ -3,33 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Blog</title>
+
+    <title>Sabor & Cia - Blog de Comida</title>
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            color: #222;
-            transition: 0.3s;
+            background-color: #f5f5f5;
         }
 
         header {
-            background: #111;
+            background-color: #e74c3c;
             color: white;
-            padding: 25px;
             text-align: center;
-        }
-
-        header h1 {
-            margin-bottom: 10px;
+            padding: 30px;
         }
 
         nav {
-            margin-top: 15px;
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
         }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .post {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .post img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .post h2 {
+            color: #e74c3c;
+        }
+
+        .post p {
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .like-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .like-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .comentarios {
+            background-color: white;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        .comment-btn {
+            margin-top: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-btn:hover {
+            background-color: #555;
+        }
+
+        #listaComentarios {
+            margin-top: 20px;
+        }
+
+        .comentario {
+            background-color: #eee;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍔 Sabor & Cia</h1>
+        <p>Seu blog sobre comida, receitas e sabores!</p>
+    </header>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Receitas</a>
+        <a href="#">Sobremesas</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <main>
+
+        <article class="post">
+
+            <h2>🍕 A Pizza: Uma das comidas mais amadas do mundo</h2>
+
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80"
+                 alt="Pizza deliciosa">
+
+            <p>
+                A pizza é uma das comidas mais populares do mundo.
+                Ela pode ser preparada com diversos ingredientes,
+                como queijo, tomate, calabresa, frango e muitos outros.
+            </p>
+
+            <p>
+                Além de deliciosa, a pizza é perfeita para compartilhar
+                com amigos e familiares.
+            </p>
+
+            <button class="like-btn" onclick="curtir()">
+                ❤️ Curtir (<span id="likes">0</span>)
+            </button>
+
+        </article>
+
+
+        <section class="comentarios">
+
+            <h2>💬 Comentários</h2>
+
+            <textarea
+                id="comentario"
+                placeholder="Escreva seu comentário aqui..."
+            ></textarea>
+
+            <button class="comment-btn" onclick="adicionarComentario()">
+                Publicar comentário
+            </button>
+
+            <div id="listaComentarios"></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 Sabor & Cia | Blog de Comida</p>
+    </footer>
+
+
+    <script>
+
+        let likes = 0;
+
+        function curtir() {
+
+            likes++;
+
+            document.getElementById("likes").innerText = likes;
+
+        }
+
+
+        function adicionarComentario() {
+
+            let comentario =
+                document.getElementById("comentario").value;
+
+            if (comentario.trim() === "") {
+
+                alert("Digite um comentário!");
+
+                return;
+            }
+
+
+            let novoComentario =
+                document.createElement("div");
+
+            novoComentario.classList.add("comentario");
+
+            novoComentario.innerText = comentario;
+
+
+            document
+                .getElementById("listaComentarios")
+                .appendChild(novoComentario);
+
+
+            document.getElementById("comentario").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
